@@ -13,7 +13,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/attachment")
 public class AttachmentController {
-
     final
     AttachmentService attachmentService;
 
@@ -30,7 +29,8 @@ public class AttachmentController {
 
     @PostMapping("/serverSave")
     public HttpEntity<?> serverSave(MultipartHttpServletRequest request){
-        return null;
+        ApiResponse apiResponse=attachmentService.serverSave(request);
+        return ResponseEntity.status(apiResponse.isSuccess()?201:409).body(apiResponse);
     }
 
     @GetMapping("/fromDB/{id}")
@@ -38,8 +38,8 @@ public class AttachmentController {
         return attachmentService.getFromDB(id);
     }
 
-    @GetMapping("/fromServe/{id}")
+    @GetMapping("/fromServer/{id}")
     public HttpEntity<?> fromServer(@PathVariable UUID id){
-        return null;
+        return attachmentService.getFromServer(id);
     }
 }

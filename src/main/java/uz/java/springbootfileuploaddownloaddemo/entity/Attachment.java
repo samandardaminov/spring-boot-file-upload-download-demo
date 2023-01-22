@@ -36,4 +36,11 @@ public class Attachment{
         this.contentType = contentType;
         this.size = size;
     }
+
+    public Attachment(String name, String contentType, int size, String path) {
+        this.name = name;
+        this.contentType = contentType;
+        this.size = size;
+        this.path = path;
+    }
 }
